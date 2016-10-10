@@ -1,0 +1,31 @@
+CREATE DATABASE MessDB
+ON(
+NAME='MessDB',
+FILENAME='C:\gitdir\MessDB.mdf',
+SIZE=100MB,
+MAXSIZE=1000MB,
+FILEGROWTH= 100MB)
+LOG ON(
+NAME='MessLog',
+FILENAME='C:\gitdir\MessLog.ldf',
+SIZE=100MB,
+MAXSIZE=1000MB,
+FILEGROWTH=100MB
+)
+USE MessDB
+
+CREATE TABLE Users(
+UserID int IDENTITY NOT NULL PRIMARY KEY ,
+fName nvarchar(30) NOT NULL,
+lName nvarchar(30) NOT NULL,
+ulogin nvarchar(20) NOT NULL,
+uPassword nvarchar(20) NOT NULL
+)
+
+CREATE TABLE Messages
+(
+MessageID int IDENTITY NOT NULL PRIMARY KEY,
+UserID int NOT NULL FOREIGN KEY REFERENCES Users(UserID),
+MessData DATETIME NOT NULL,
+Details nvarchar(1000) NOT NULL
+)

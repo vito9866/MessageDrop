@@ -1,0 +1,39 @@
+  <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Path >
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                    <PathFigure StartPoint="5,0">
+                                        <LineSegment Point="90,0" ></LineSegment>
+                                    </PathFigure>
+                                    <PathFigure StartPoint="100,10">
+                                        <ArcSegment Point="90,0" Size="10,10"  ></ArcSegment>
+                                    </PathFigure>
+                                    <PathFigure StartPoint="100,10">
+                                        <LineSegment Point="100,40"></LineSegment>
+                                    </PathFigure>
+                                    <PathFigure StartPoint="90,50">
+                                        <ArcSegment Point="100,40" Size="10,10"></ArcSegment>
+                                    </PathFigure>
+                                    <PathFigure StartPoint="90,50">
+                                        <LineSegment Point="10,50"></LineSegment>
+                                    </PathFigure>
+                                    <PathFigure StartPoint="0,40">
+                                        <ArcSegment Point="10,50" Size="10,10"></ArcSegment>
+                                    </PathFigure>
+                                    <PathFigure StartPoint="0,40">
+                                        <LineSegment Point="0,10"></LineSegment>
+                                    </PathFigure>
+                                    <PathFigure StartPoint="10,0">
+                                        <ArcSegment Point="0,10" Size="10,10"></ArcSegment>
+                                    </PathFigure>
+                                        <PathFigure StartPoint="0,10" IsClosed="True"  ></PathFigure>  
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
