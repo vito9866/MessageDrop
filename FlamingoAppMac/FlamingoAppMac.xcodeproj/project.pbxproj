@@ -1,0 +1,305 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		578BAD4C1DAB6A55000360DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BAD4B1DAB6A55000360DB /* AppDelegate.swift */; };
+		578BAD4E1DAB6A55000360DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BAD4D1DAB6A55000360DB /* ViewController.swift */; };
+		578BAD501DAB6A55000360DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578BAD4F1DAB6A55000360DB /* Assets.xcassets */; };
+		578BAD531DAB6A55000360DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578BAD511DAB6A55000360DB /* Main.storyboard */; };
+		578BAD5D1DAB6B66000360DB /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BAD5C1DAB6B66000360DB /* LoginWindowController.swift */; };
+		57A3B23E1DABB12F00362FD1 /* BlurWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3B23D1DABB12F00362FD1 /* BlurWindow.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		578BAD481DAB6A55000360DB /* FlamingoAppMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlamingoAppMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		578BAD4B1DAB6A55000360DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		578BAD4D1DAB6A55000360DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		578BAD4F1DAB6A55000360DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		578BAD521DAB6A55000360DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		578BAD541DAB6A55000360DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		578BAD5C1DAB6B66000360DB /* LoginWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
+		57A3B23D1DABB12F00362FD1 /* BlurWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurWindow.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		578BAD451DAB6A55000360DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		578BAD3F1DAB6A55000360DB = {
+			isa = PBXGroup;
+			children = (
+				578BAD4A1DAB6A55000360DB /* FlamingoAppMac */,
+				578BAD491DAB6A55000360DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		578BAD491DAB6A55000360DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				578BAD481DAB6A55000360DB /* FlamingoAppMac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		578BAD4A1DAB6A55000360DB /* FlamingoAppMac */ = {
+			isa = PBXGroup;
+			children = (
+				578BAD4B1DAB6A55000360DB /* AppDelegate.swift */,
+				578BAD4D1DAB6A55000360DB /* ViewController.swift */,
+				578BAD5C1DAB6B66000360DB /* LoginWindowController.swift */,
+				57A3B23D1DABB12F00362FD1 /* BlurWindow.swift */,
+				578BAD4F1DAB6A55000360DB /* Assets.xcassets */,
+				578BAD511DAB6A55000360DB /* Main.storyboard */,
+				578BAD541DAB6A55000360DB /* Info.plist */,
+			);
+			path = FlamingoAppMac;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		578BAD471DAB6A55000360DB /* FlamingoAppMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 578BAD571DAB6A55000360DB /* Build configuration list for PBXNativeTarget "FlamingoAppMac" */;
+			buildPhases = (
+				578BAD441DAB6A55000360DB /* Sources */,
+				578BAD451DAB6A55000360DB /* Frameworks */,
+				578BAD461DAB6A55000360DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlamingoAppMac;
+			productName = FlamingoAppMac;
+			productReference = 578BAD481DAB6A55000360DB /* FlamingoAppMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		578BAD401DAB6A55000360DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = vicmac;
+				TargetAttributes = {
+					578BAD471DAB6A55000360DB = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = QGC6R3D2VE;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 578BAD431DAB6A55000360DB /* Build configuration list for PBXProject "FlamingoAppMac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 578BAD3F1DAB6A55000360DB;
+			productRefGroup = 578BAD491DAB6A55000360DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				578BAD471DAB6A55000360DB /* FlamingoAppMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		578BAD461DAB6A55000360DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578BAD501DAB6A55000360DB /* Assets.xcassets in Resources */,
+				578BAD531DAB6A55000360DB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		578BAD441DAB6A55000360DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57A3B23E1DABB12F00362FD1 /* BlurWindow.swift in Sources */,
+				578BAD4E1DAB6A55000360DB /* ViewController.swift in Sources */,
+				578BAD5D1DAB6B66000360DB /* LoginWindowController.swift in Sources */,
+				578BAD4C1DAB6A55000360DB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		578BAD511DAB6A55000360DB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				578BAD521DAB6A55000360DB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		578BAD551DAB6A55000360DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		578BAD561DAB6A55000360DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		578BAD581DAB6A55000360DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = QGC6R3D2VE;
+				INFOPLIST_FILE = FlamingoAppMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vicmac.FlamingoAppMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		578BAD591DAB6A55000360DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = QGC6R3D2VE;
+				INFOPLIST_FILE = FlamingoAppMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vicmac.FlamingoAppMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		578BAD431DAB6A55000360DB /* Build configuration list for PBXProject "FlamingoAppMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				578BAD551DAB6A55000360DB /* Debug */,
+				578BAD561DAB6A55000360DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		578BAD571DAB6A55000360DB /* Build configuration list for PBXNativeTarget "FlamingoAppMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				578BAD581DAB6A55000360DB /* Debug */,
+				578BAD591DAB6A55000360DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 578BAD401DAB6A55000360DB /* Project object */;
+}
