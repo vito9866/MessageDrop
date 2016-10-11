@@ -27,6 +27,9 @@ namespace WpfApplication1
         private void BtnSign_Click(object sender, RoutedEventArgs e)
         {
             this.GroupInput.Visibility=Visibility.Collapsed;
+            this.backGFlamingo.Visibility = Visibility.Collapsed;
+            this.Grid_2.Visibility = Visibility.Visible;
+            this.Grid_1.Visibility = Visibility.Visible;
         }
     }
 }
