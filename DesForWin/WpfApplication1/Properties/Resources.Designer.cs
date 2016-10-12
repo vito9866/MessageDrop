@@ -63,9 +63,29 @@ namespace WpfApplication1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CloseButton {
+            get {
+                object obj = ResourceManager.GetObject("CloseButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap flamingo {
             get {
                 object obj = ResourceManager.GetObject("flamingo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RedCloseButton {
+            get {
+                object obj = ResourceManager.GetObject("RedCloseButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

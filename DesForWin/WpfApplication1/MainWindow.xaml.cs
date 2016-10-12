@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Shapes; 
 
 namespace WpfApplication1
 {
@@ -27,9 +27,18 @@ namespace WpfApplication1
         private void BtnSign_Click(object sender, RoutedEventArgs e)
         {
             this.GroupInput.Visibility=Visibility.Collapsed;
-            this.backGFlamingo.Visibility = Visibility.Collapsed;
             this.Grid_2.Visibility = Visibility.Visible;
             this.Grid_1.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonCloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MouseDownDrag(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

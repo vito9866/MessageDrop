@@ -100,6 +100,18 @@
   <ItemGroup>
     <None Include="Resources\flamingo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloseButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedCloseButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleApplication1\Client.csproj">
+      <Project>{6fb0f457-fcce-4be2-883c-f0d460d3b487}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

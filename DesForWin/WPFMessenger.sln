@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfMessenger", "WpfApplication1\WpfMessenger.csproj", "{4920CD22-051A-4880-B0D9-DA49435FAEF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "ConsoleApplication1\Client.csproj", "{6FB0F457-FCCE-4BE2-883C-F0D460D3B487}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4920CD22-051A-4880-B0D9-DA49435FAEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4920CD22-051A-4880-B0D9-DA49435FAEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4920CD22-051A-4880-B0D9-DA49435FAEF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FB0F457-FCCE-4BE2-883C-F0D460D3B487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FB0F457-FCCE-4BE2-883C-F0D460D3B487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FB0F457-FCCE-4BE2-883C-F0D460D3B487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FB0F457-FCCE-4BE2-883C-F0D460D3B487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
