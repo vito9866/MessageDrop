@@ -687,7 +687,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="290"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <containerView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KE5-cg-rmY">
+                            <containerView appearanceType="aqua" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KE5-cg-rmY">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="450" id="P7X-N2-XWk"/>
