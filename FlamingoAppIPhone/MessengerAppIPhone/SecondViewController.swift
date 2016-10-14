@@ -10,6 +10,10 @@ import UIKit
 
 class SecondViewController: UITableViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -25,19 +29,20 @@ class SecondViewController: UITableViewController {
         //navigationController?.navigationBar.shadowImage = UIImage(named: "")
         //defaultColorNavigationBar = UINavigationBar.appearance().tintColor
         //UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().barTintColor = UIColor(red: 235.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 0.7/1.0)
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 76.0/255.0, green: 95.0/255.0, blue: 151.0/255.0, alpha: 1.0/1.0)]
+        //UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().barTintColor = UIColor(red: 75.0/255.0, green: 93.0/255.0, blue: 149.0/255.0, alpha: 0.9/1.0)
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
+
     
     //var users: [String] = ["User1", "User2", "User3"]
-    var users: [infoCardPeopleTableViewController] = [
-        infoCardPeopleTableViewController(peoplePhotoImage: "RichardHendricks_photo", peopleName: "Richard Hendricks", peopleMessageText: "Take the new beta version Pied…", sentTime: "9:07"),
-        infoCardPeopleTableViewController(peoplePhotoImage: "DineshNanjiani_photo", peopleName: "Dinesh Nanjiani", peopleMessageText: "Please, donate $500 for my…", sentTime: "8:49"),
-        infoCardPeopleTableViewController(peoplePhotoImage: "GilfoyleStarr_photo", peopleName: "Gilfoyle Starr", peopleMessageText: "I am checking our new server.", sentTime: "8:00"),
-        infoCardPeopleTableViewController(peoplePhotoImage: "JaredWoods_photo", peopleName: "Jared Woods", peopleMessageText: "We will work by new skram.", sentTime: "Yesterday"),
-        infoCardPeopleTableViewController(peoplePhotoImage: "ErlichBachman_photo", peopleName: "Erlich Bachman", peopleMessageText: "Photo", sentTime: "Yesterday"),
-        infoCardPeopleTableViewController(peoplePhotoImage: "RussHanneman_photo", peopleName: "Russ Hanneman", peopleMessageText: "OK, dude!", sentTime: "Yesterday"),
+    var users: [InfoCardPeopleTableViewController] = [
+        InfoCardPeopleTableViewController(peoplePhotoImage: "RichardHendricks_photo", peopleName: "Richard Hendricks", peopleMessageText: "Take the new beta version Pied…", sentTime: "9:07"),
+        InfoCardPeopleTableViewController(peoplePhotoImage: "DineshNanjiani_photo", peopleName: "Dinesh Nanjiani", peopleMessageText: "Please, donate $500 for my…", sentTime: "8:49"),
+        InfoCardPeopleTableViewController(peoplePhotoImage: "GilfoyleStarr_photo", peopleName: "Gilfoyle Starr", peopleMessageText: "I am checking our new server.", sentTime: "8:00"),
+        InfoCardPeopleTableViewController(peoplePhotoImage: "JaredWoods_photo", peopleName: "Jared Woods", peopleMessageText: "We will work by new skram.", sentTime: "Yesterday"),
+        InfoCardPeopleTableViewController(peoplePhotoImage: "ErlichBachman_photo", peopleName: "Erlich Bachman", peopleMessageText: "Photo", sentTime: "Yesterday"),
+        InfoCardPeopleTableViewController(peoplePhotoImage: "RussHanneman_photo", peopleName: "Russ Hanneman", peopleMessageText: "OK, dude!", sentTime: "Yesterday"),
         
     ]
     
@@ -77,12 +82,17 @@ class SecondViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToConversation" {
-            _ = segue.destination as! ConversationViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let conversationController = segue.destination as! ConversationCollectionViewController
+                conversationController.userName = users[indexPath.item].peopleName
+            }
         }
     }
     
     @IBAction func unwindToSecondViewController(segue: UIStoryboard) {
     }
+    
+    
     
     
 }

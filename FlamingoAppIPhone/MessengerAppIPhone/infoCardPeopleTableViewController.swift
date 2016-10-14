@@ -8,7 +8,7 @@
 
 import UIKit
 
-class infoCardPeopleTableViewController {
+class InfoCardPeopleTableViewController {
     var peoplePhotoImage = ""
     var peopleName = ""
     var peopleMessageText = ""

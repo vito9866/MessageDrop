@@ -7,23 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57004DBF1DB00FB0006D26B8 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57004DBE1DB00FB0006D26B8 /* UserController.swift */; };
 		5712026E1DAC2A0500930C8E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5712026D1DAC2A0500930C8E /* SecondViewController.swift */; };
 		5725C6A51DACE893003FE112 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5725C6A41DACE893003FE112 /* PeopleTableViewCell.swift */; };
-		5725C6A71DACECB9003FE112 /* infoCardPeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5725C6A61DACECB9003FE112 /* infoCardPeopleTableViewController.swift */; };
-		5729C56B1DAD4D2A00B4E1D2 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729C56A1DAD4D2A00B4E1D2 /* ConversationViewController.swift */; };
+		5725C6A71DACECB9003FE112 /* InfoCardPeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5725C6A61DACECB9003FE112 /* InfoCardPeopleTableViewController.swift */; };
+		5729C56B1DAD4D2A00B4E1D2 /* ConversationCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729C56A1DAD4D2A00B4E1D2 /* ConversationCollectionViewController.swift */; };
 		578BAD6B1DAB75CA000360DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BAD6A1DAB75CA000360DB /* AppDelegate.swift */; };
 		578BAD6D1DAB75CA000360DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BAD6C1DAB75CA000360DB /* ViewController.swift */; };
 		578BAD701DAB75CA000360DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578BAD6E1DAB75CA000360DB /* Main.storyboard */; };
 		578BAD721DAB75CA000360DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578BAD711DAB75CA000360DB /* Assets.xcassets */; };
 		578BAD751DAB75CA000360DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578BAD731DAB75CA000360DB /* LaunchScreen.storyboard */; };
 		578BAD7D1DAB7E9D000360DB /* TextFieldsWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BAD7C1DAB7E9D000360DB /* TextFieldsWithPadding.swift */; };
+		57E44B531DAE929000AF707F /* ConversationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E44B521DAE929000AF707F /* ConversationCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57004DBE1DB00FB0006D26B8 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		5712026D1DAC2A0500930C8E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		5725C6A41DACE893003FE112 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
-		5725C6A61DACECB9003FE112 /* infoCardPeopleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = infoCardPeopleTableViewController.swift; sourceTree = "<group>"; };
-		5729C56A1DAD4D2A00B4E1D2 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		5725C6A61DACECB9003FE112 /* InfoCardPeopleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCardPeopleTableViewController.swift; sourceTree = "<group>"; };
+		5729C56A1DAD4D2A00B4E1D2 /* ConversationCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCollectionViewController.swift; sourceTree = "<group>"; };
 		578BAD671DAB75CA000360DB /* MessengerAppIPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerAppIPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578BAD6A1DAB75CA000360DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		578BAD6C1DAB75CA000360DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +35,7 @@
 		578BAD741DAB75CA000360DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		578BAD761DAB75CA000360DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		578BAD7C1DAB7E9D000360DB /* TextFieldsWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsWithPadding.swift; sourceTree = "<group>"; };
+		57E44B521DAE929000AF707F /* ConversationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +71,10 @@
 				578BAD6A1DAB75CA000360DB /* AppDelegate.swift */,
 				578BAD6C1DAB75CA000360DB /* ViewController.swift */,
 				5712026D1DAC2A0500930C8E /* SecondViewController.swift */,
-				5729C56A1DAD4D2A00B4E1D2 /* ConversationViewController.swift */,
-				5725C6A61DACECB9003FE112 /* infoCardPeopleTableViewController.swift */,
+				5729C56A1DAD4D2A00B4E1D2 /* ConversationCollectionViewController.swift */,
+				57004DBE1DB00FB0006D26B8 /* UserController.swift */,
+				57E44B521DAE929000AF707F /* ConversationCollectionViewCell.swift */,
+				5725C6A61DACECB9003FE112 /* InfoCardPeopleTableViewController.swift */,
 				5725C6A41DACE893003FE112 /* PeopleTableViewCell.swift */,
 				578BAD7C1DAB7E9D000360DB /* TextFieldsWithPadding.swift */,
 				578BAD6E1DAB75CA000360DB /* Main.storyboard */,
@@ -152,13 +158,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5729C56B1DAD4D2A00B4E1D2 /* ConversationViewController.swift in Sources */,
+				57004DBF1DB00FB0006D26B8 /* UserController.swift in Sources */,
+				5729C56B1DAD4D2A00B4E1D2 /* ConversationCollectionViewController.swift in Sources */,
 				5725C6A51DACE893003FE112 /* PeopleTableViewCell.swift in Sources */,
 				5712026E1DAC2A0500930C8E /* SecondViewController.swift in Sources */,
 				578BAD6D1DAB75CA000360DB /* ViewController.swift in Sources */,
 				578BAD7D1DAB7E9D000360DB /* TextFieldsWithPadding.swift in Sources */,
-				5725C6A71DACECB9003FE112 /* infoCardPeopleTableViewController.swift in Sources */,
+				5725C6A71DACECB9003FE112 /* InfoCardPeopleTableViewController.swift in Sources */,
 				578BAD6B1DAB75CA000360DB /* AppDelegate.swift in Sources */,
+				57E44B531DAE929000AF707F /* ConversationCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

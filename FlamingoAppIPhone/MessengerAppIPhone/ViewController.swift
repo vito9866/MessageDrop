@@ -15,22 +15,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var passwordLabel: UILabel!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         
+        
+        
         let paddingViewUsernameTextField = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.usernameTextField.frame.height))
         let paddingViewPasswordTextField = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.passwordTextField.frame.height))
         
+
+        
         // Do any additional setup after loading the view, typically from a nib.
-        usernameTextField.backgroundColor = UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 0.3/1.0)
+        //usernameTextField.backgroundColor = UIColor(red: 136.0/255.0, green: 152.0/255.0, blue: 201.0/255.0, alpha: 0.3/1.0)
         usernameTextField.layer.cornerRadius = 20.0
+        usernameTextField.clipsToBounds = true
         usernameTextField.leftView = paddingViewUsernameTextField
         usernameTextField.leftViewMode = UITextFieldViewMode.always
         usernameLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5/1.0)
-        passwordTextField.backgroundColor = UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 0.3/1.0)
+        //passwordTextField.backgroundColor = UIColor(red: 136.0/255.0, green: 152.0/255.0, blue: 201.0/255.0, alpha: 0.3/1.0)
         passwordTextField.layer.cornerRadius = 20.0
         passwordTextField.leftView = paddingViewPasswordTextField
         passwordTextField.leftViewMode = UITextFieldViewMode.always
