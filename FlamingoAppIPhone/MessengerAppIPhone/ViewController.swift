@@ -58,19 +58,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func signIn(_ sender: UIButton) {
-        /*if (usernameTextField.text == "") || (passwordTextField.text == "") {
-            print("HELLO!")
-            let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the filed is blank. Please, fill all fields are required.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-            return
-            
-        } else {
-            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "nextView") as! UINavigationController
-            self.present(controller, animated: true, completion: nil)
-        }*/
-        
         if (usernameTextField.text == "") || (passwordTextField.text == "") {
             print("HELLO!")
             let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the filed is blank. Please, fill all fields are required.", preferredStyle: .alert)
@@ -107,6 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         })
     }
+
     
     func hideKeyboardWhenTapAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboardView))

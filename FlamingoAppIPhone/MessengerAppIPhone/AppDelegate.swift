@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /*window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()*/
         
-        FIRApp.configure() 
+        FIRApp.configure()
         
         let layout = UICollectionViewLayout()
         _ = ConversationCollectionViewController(collectionViewLayout: layout)

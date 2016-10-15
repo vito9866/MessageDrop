@@ -7,8 +7,8 @@ target 'MessengerAppIPhone' do
 
   # Pods for MessengerAppIPhone
 
-pod 'Firebase/Core'
-pod ‘Firebase’ 
+pod ‘Firebase’
+pod ‘Firebase/Core’
 pod ‘Firebase/Auth’
 
 end
