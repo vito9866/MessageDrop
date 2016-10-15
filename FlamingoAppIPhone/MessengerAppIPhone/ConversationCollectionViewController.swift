@@ -60,7 +60,9 @@ class ConversationCollectionViewController: UICollectionViewController, UICollec
     
     override func viewWillDisappear(_ animated: Bool) {
         //self.navigationItem.title = "Conversations"
-        self.navigationController?.navigationBar.topItem?.title = "Conversations"
+        //self.navigationController?.navigationBar.topItem?.title = "Conversations"
+        //self.navigationController?.navigationBar.topItem?.title = "Conversations";
+        //self.navigationItem.title = "Conversations";
     }
     
     override func viewDidLoad() {
@@ -72,7 +74,9 @@ class ConversationCollectionViewController: UICollectionViewController, UICollec
         self.navigationItem.title = userName
         self.navigationController!.navigationBar.tintColor = UIColor.white
         //self.navigationItem.backBarButtonItem?.title = ""
-        self.navigationController?.navigationBar.topItem?.title = "";
+        //self.navigationController?.navigationBar.topItem?.title = "";
+        //self.navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         view.addSubview(messageInputContainerView)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: messageInputContainerView)

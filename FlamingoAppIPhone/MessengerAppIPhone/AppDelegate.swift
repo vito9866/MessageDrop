@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,8 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /*window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()*/
         
+        FIRApp.configure() 
+        
         let layout = UICollectionViewLayout()
         _ = ConversationCollectionViewController(collectionViewLayout: layout)
+        
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
         
         
         

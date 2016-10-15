@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -38,12 +39,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         usernameTextField.clipsToBounds = true
         usernameTextField.leftView = paddingViewUsernameTextField
         usernameTextField.leftViewMode = UITextFieldViewMode.always
-        usernameLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5/1.0)
+        usernameLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.8/1.0)
         //passwordTextField.backgroundColor = UIColor(red: 136.0/255.0, green: 152.0/255.0, blue: 201.0/255.0, alpha: 0.3/1.0)
         passwordTextField.layer.cornerRadius = 20.0
         passwordTextField.leftView = paddingViewPasswordTextField
         passwordTextField.leftViewMode = UITextFieldViewMode.always
-        passwordLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5/1.0)
+        passwordLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.8/1.0)
 
         usernameTextField.delegate = self
         passwordTextField.delegate = self
@@ -57,7 +58,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func signIn(_ sender: UIButton) {
-        if (usernameTextField.text == "") || (passwordTextField.text == "") {
+        /*if (usernameTextField.text == "") || (passwordTextField.text == "") {
             print("HELLO!")
             let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the filed is blank. Please, fill all fields are required.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -68,7 +69,43 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "nextView") as! UINavigationController
             self.present(controller, animated: true, completion: nil)
+        }*/
+        
+        if (usernameTextField.text == "") || (passwordTextField.text == "") {
+            print("HELLO!")
+            let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the filed is blank. Please, fill all fields are required.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            return
+        } else {
+            FIRAuth.auth()?.createUser(withEmail: usernameTextField.text!, password: passwordTextField.text!, completion: {
+                user, error in
+                if error != nil {
+                    self.login()
+                } else {
+                    print("Uses created")
+                    self.login()
+                }
+            })
         }
+    }
+    
+    func login() {
+        FIRAuth.auth()?.signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!, completion: {
+            user, error in
+            if error != nil {
+                print("Incorrect")
+                let alertController = UIAlertController(title: "Oops", message: "The entered Username or Password is wrong. Please, try again with other data.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+                return
+            } else {
+                print("Complete!")
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "nextView") as! UINavigationController
+                self.present(controller, animated: true, completion: nil)
+            }
+        })
     }
     
     func hideKeyboardWhenTapAround() {

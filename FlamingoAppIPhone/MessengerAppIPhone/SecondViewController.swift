@@ -9,9 +9,17 @@
 import UIKit
 
 class SecondViewController: UITableViewController {
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //self.navigationItem.title = "Conversations";
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //self.navigationItem.title = "";
     }
     
     override func viewDidLoad() {
@@ -22,7 +30,8 @@ class SecondViewController: UITableViewController {
         //navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 160.0/255.0, green: 43.0/255.0, blue: 184.0/255.0, alpha: 1.0/1.0)]
         //navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 76.0/255.0, green: 95.0/255.0, blue: 151.0/255.0, alpha: 1.0/1.0)]
         //tableView.separatorColor = UIColor(red: 215.0/255.0, green: 174.0/255.0, blue: 224.0/255.0, alpha: 0.4/1.0)
-        tableView.separatorColor = UIColor(red: 163.0/255.0, green: 206.0/255.0, blue: 239.0/255.0, alpha: 0.4/1.0)
+        tableView.separatorColor = UIColor(red: 200.0/255.0, green: 205.0/255.0, blue: 223.0/255.0, alpha: 0.4/1.0)
+        self.navigationItem.title = "Conversations";
         
         
         //self.navigationBar.shadowImage = UIImage(named: "")
@@ -30,8 +39,10 @@ class SecondViewController: UITableViewController {
         //defaultColorNavigationBar = UINavigationBar.appearance().tintColor
         //UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         //UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().barTintColor = UIColor(red: 75.0/255.0, green: 93.0/255.0, blue: 149.0/255.0, alpha: 0.9/1.0)
+        //UINavigationBar.appearance().barTintColor = UIColor(red: 75.0/255.0, green: 93.0/255.0, blue: 149.0/255.0, alpha: 1.0/1.0)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 75.0/255.0, green: 93.0/255.0, blue: 149.0/255.0, alpha: 1.0/1.0)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
     }
 
     
@@ -85,11 +96,15 @@ class SecondViewController: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let conversationController = segue.destination as! ConversationCollectionViewController
                 conversationController.userName = users[indexPath.item].peopleName
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                navigationItem.backBarButtonItem = backItem
             }
         }
     }
     
     @IBAction func unwindToSecondViewController(segue: UIStoryboard) {
+         //self.navigationItem.title = "Conversations";
     }
     
     
