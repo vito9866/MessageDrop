@@ -30,6 +30,8 @@
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>UIImagePickerController or PHPhotoLibrary requestAuthorization: used in conjunction with any of the following classes: PHAsset PHAssetCollection PHCollection PHCollectionList</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

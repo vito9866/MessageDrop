@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SecondViewController: UITableViewController {
 
@@ -15,39 +16,22 @@ class SecondViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //self.navigationItem.title = "Conversations";
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        //self.navigationItem.title = "";
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem;
-        //navigationController?.navigationBar.barTintColor = UIColor(red: 238.0/255.0, green: 219.0/255.0, blue: 242.0/255.0, alpha: 0.7/1.0)
-        //navigationController?.navigationBar.barTintColor = UIColor(red: 235.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 0.7/1.0)
-        //navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 160.0/255.0, green: 43.0/255.0, blue: 184.0/255.0, alpha: 1.0/1.0)]
-        //navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 76.0/255.0, green: 95.0/255.0, blue: 151.0/255.0, alpha: 1.0/1.0)]
-        //tableView.separatorColor = UIColor(red: 215.0/255.0, green: 174.0/255.0, blue: 224.0/255.0, alpha: 0.4/1.0)
-        tableView.separatorColor = UIColor(red: 200.0/255.0, green: 205.0/255.0, blue: 223.0/255.0, alpha: 0.4/1.0)
-        self.navigationItem.title = "Conversations";
-        
-        
-        //self.navigationBar.shadowImage = UIImage(named: "")
-        //navigationController?.navigationBar.shadowImage = UIImage(named: "")
-        //defaultColorNavigationBar = UINavigationBar.appearance().tintColor
-        //UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        //UINavigationBar.appearance().shadowImage = UIImage()
-        //UINavigationBar.appearance().barTintColor = UIColor(red: 75.0/255.0, green: 93.0/255.0, blue: 149.0/255.0, alpha: 1.0/1.0)
-        UINavigationBar.appearance().barTintColor = UIColor(red: 75.0/255.0, green: 93.0/255.0, blue: 149.0/255.0, alpha: 1.0/1.0)
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            self.logoutProfile()
+        }
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.checkIsUserLogIn()
+        
+        tableView.separatorColor = UIColor(red: 200.0/255.0, green: 205.0/255.0, blue: 223.0/255.0, alpha: 0.4/1.0)
+        self.navigationItem.title = "Conversations";
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+    }
     
-    //var users: [String] = ["User1", "User2", "User3"]
-    var users: [InfoCardPeopleTableViewController] = [
+    /*var users: [InfoCardPeopleTableViewController] = [
         InfoCardPeopleTableViewController(peoplePhotoImage: "RichardHendricks_photo", peopleName: "Richard Hendricks", peopleMessageText: "Take the new beta version Pied…", sentTime: "9:07"),
         InfoCardPeopleTableViewController(peoplePhotoImage: "DineshNanjiani_photo", peopleName: "Dinesh Nanjiani", peopleMessageText: "Please, donate $500 for my…", sentTime: "8:49"),
         InfoCardPeopleTableViewController(peoplePhotoImage: "GilfoyleStarr_photo", peopleName: "Gilfoyle Starr", peopleMessageText: "I am checking our new server.", sentTime: "8:00"),
@@ -55,35 +39,43 @@ class SecondViewController: UITableViewController {
         InfoCardPeopleTableViewController(peoplePhotoImage: "ErlichBachman_photo", peopleName: "Erlich Bachman", peopleMessageText: "Photo", sentTime: "Yesterday"),
         InfoCardPeopleTableViewController(peoplePhotoImage: "RussHanneman_photo", peopleName: "Russ Hanneman", peopleMessageText: "OK, dude!", sentTime: "Yesterday"),
         
-    ]
+    ]*/
     
+    //var users = [UserWrapper]()
+    //var users = [InfoCardPeopleTableViewController]()
+    var users = [User]()
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //print("Count of users \(users.count)")
         return users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PeopleTableViewCell
-        cell.peopleNameLabel.text = users[indexPath.row].peopleName
-        //cell.peopleNameLabel.textColor = UIColor(red: 160.0/255.0, green: 43.0/255.0, blue: 184.0/255.0, alpha: 1.0/1.0)
+        cell.peopleNameLabel.text = users[indexPath.row].username
+        print(users[indexPath.row].username)
         cell.peopleNameLabel.textColor = UIColor(red: 76.0/255.0, green: 95.0/255.0, blue: 151.0/255.0, alpha: 1.0/1.0)
-        cell.peoplePhotoImage.image = UIImage(named: users[indexPath.row].peoplePhotoImage)
+        
+        cell.peoplePhotoImage.image = UIImage(named: "EmptyAvatarList")
         cell.peoplePhotoImage.layer.cornerRadius = 30.0
         cell.peoplePhotoImage.clipsToBounds = true
-        cell.textMessageLabel.text = users[indexPath.row].peopleMessageText
-        //cell.textMessageLabel.textColor = UIColor(red: 176.0/255.0, green: 141.0/255.0, blue: 184.0/255.0, alpha: 1.0/1.0)
+        
+        if let profileImageUrl: String = users[indexPath.row].profileImageUrl {
+            cell.peoplePhotoImage.loadImagesUsingCacheMemoryWithUrlString(urlString: profileImageUrl)
+        }
+        
+        cell.textMessageLabel.text = "Take a new beta version"
+        print("Take a new beta version")
         cell.textMessageLabel.textColor = UIColor(red: 164.0/255.0, green: 173.0/255.0, blue: 203.0/255.0, alpha: 1.0/1.0)
         cell.peopleNameLabel.textColor = UIColor(red: 76.0/255.0, green: 95.0/255.0, blue: 151.0/255.0, alpha: 1.0/1.0)
-        cell.sentTimeLabel.text = users[indexPath.row].sentTime
-        //cell.sentTimeLabel.textColor = UIColor(red: 180.0/255.0, green: 188.0/255.0, blue: 211.0/255.0, alpha: 1.0/1.0)
+        cell.sentTimeLabel.text = "00:00"
+        print("00:00")
         cell.sentTimeLabel.textColor = UIColor(red: 180.0/255.0, green: 188.0/255.0, blue: 211.0/255.0, alpha: 1.0/1.0)
-        
-        
         return cell
     }
     
@@ -95,7 +87,7 @@ class SecondViewController: UITableViewController {
         if segue.identifier == "goToConversation" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let conversationController = segue.destination as! ConversationCollectionViewController
-                conversationController.userName = users[indexPath.item].peopleName
+                conversationController.userName = users[indexPath.item].username!
                 let backItem = UIBarButtonItem()
                 backItem.title = ""
                 navigationItem.backBarButtonItem = backItem
@@ -103,11 +95,82 @@ class SecondViewController: UITableViewController {
         }
     }
     
-    @IBAction func unwindToSecondViewController(segue: UIStoryboard) {
-         //self.navigationItem.title = "Conversations";
+    func loadUsers() {
+        print("Starting load users")
+        FIRDatabase.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : Any] {
+                let user = User()
+                user.setValuesForKeys(dictionary)
+                self.users.append(user)
+                print("Success load user")
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            print("User found")
+            print(snapshot)
+            }, withCancel: nil)
     }
     
+    func checkIsUserLogIn() {
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            performSelector(onMainThread: #selector(logoutProfile), with: nil, waitUntilDone: false)
+        } else {
+            print("Success checking login")
+            self.loadUsers()
+        }
+    }
     
+    @IBAction func logoutProfile() {
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "LoginScreen") as! ViewController
+        self.present(controller, animated: true, completion: nil)
+    }
     
+    @IBAction func unwindToSecondViewController(segue: UIStoryboard) {
+    }
+}
+
+let imageCache = NSCache<AnyObject, AnyObject>()
+
+extension UIImageView {
     
+    func loadImagesUsingCacheMemoryWithUrlString(urlString: String) {
+        /*if let profileImageUrl: String = users[indexPath.row].profileImageUrl {
+         let url = NSURL(string: profileImageUrl)
+         URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) in
+         if error != nil {
+         print("Error load user photo from the server")
+         return
+         }
+         DispatchQueue.main.async {
+         print("Success load user photo from the server")
+         cell.peoplePhotoImage.image = UIImage(data: data!)
+         }
+         }).resume()
+         }*/
+        if let cachedUserProfilePhoto = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
+            self.image = cachedUserProfilePhoto
+            return
+        }
+        let url = NSURL(string: urlString)
+        URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) in
+            if error != nil {
+                print("Error load user photo from the server")
+                return
+            }
+            DispatchQueue.main.async {
+                print("Success load user photo from the server")
+                if let downloadedUserProfilePhoto = UIImage(data: data!) {
+                    imageCache.setObject(downloadedUserProfilePhoto, forKey: urlString as AnyObject)
+                    self.image = downloadedUserProfilePhoto
+                }
+            }
+        }).resume()
+    }
 }
