@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var usernameTextField: TextFieldsWithPadding!
     @IBOutlet var usernameLabel: UILabel!
@@ -74,7 +74,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     func hideKeyboardWhenTapAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboardView))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignInViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }

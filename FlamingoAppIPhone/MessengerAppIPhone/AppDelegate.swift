@@ -22,8 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        let layout = UICollectionViewLayout()
-        _ = ConversationCollectionViewController(collectionViewLayout: layout)
+        /*let layout = UICollectionViewLayout()
+        _ = ConversationCollectionViewController(collectionViewLayout: layout)*/
+        
+        application.statusBarStyle = .lightContent
         
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         

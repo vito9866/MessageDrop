@@ -39,7 +39,6 @@ class ConversationCollectionViewCell: BaseCell {
         return view
     }()
 
-    
     override func setupViews() {
         super.setupViews()
         

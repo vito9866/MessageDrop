@@ -20,7 +20,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet var addAvatarButton: UIImageView!
     
     let imagePicker = UIImagePickerController()
-   // @IBOutlet var singUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +49,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         addAvatarButton.layer.cornerRadius = 42.0
         addAvatarButton.clipsToBounds = true
-        
-        //imagePicker.delegate = addAvatarImageView as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
         
         self.hideKeyboardWhenTapAround()
     }
@@ -99,34 +96,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func registerNewUserIntoDatabase(uid: String, dataValues: [String : Any]) {
-        /*FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text! , completion: {
-            user, error in
-            if error != nil {
-                print("Form if not valid")
-                let alertController = UIAlertController(title: "Oops", message: "The entered Username or Password is wrong. Please, try again with other data.", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-                return
-            } else {
-                print("Trying to save")
-                guard let uid = user?.uid else {
-                    return
-                }
-                let ref = FIRDatabase.database().reference(fromURL: "https://flamingomessenger-80bf4.firebaseio.com/")
-                let userReference = ref.child("users").child(uid)
-                let dataValues: Dictionary<String, String> = ["username" : self.usernameTextField.text!, "email" : self.emailTextField.text!, "profileImage" : metadata.downloadUrl()]
-                userReference.updateChildValues(dataValues, withCompletionBlock: {
-                    err, ref in
-                    if err != nil {
-                        print("Failed save to server database")
-                        return
-                    }
-                    print("Succesfully saved to server databse")
-                })
-                self.loginIn()
-            }
-        })*/
-        let ref = FIRDatabase.database().reference(fromURL: "https://flamingomessenger-80bf4.firebaseio.com/")
+        
+        let ref = FIRDatabase.database().reference()
         let userReference = ref.child("users").child(uid)
         userReference.updateChildValues(dataValues, withCompletionBlock: {
             err, ref in
@@ -167,27 +138,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         dismiss(animated: true, completion: nil)
     }
     
-    /*func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        //var selectedUserPhotoFormPhotoLibrary: UIImage?
-        if let editedUserPhoto = info[UIImagePickerControllerEditedImage] as? UIImage {
-            addAvatarButton.image = editedUserPhoto
-            print("User photo selected")
-        } else if let originalUserPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            addAvatarButton.image = originalUserPhoto
-            print("User photo selected")
-        }
-        
-        /*let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-         self.addAvatarButton.image = selectedImage
-         dismiss(animated: true, completion: nil)*/
-        /*if let selectedUserPhoto = selectedUserPhotoFormPhotoLibrary {
-            addAvatarButton.image = selectedUserPhoto
-            print("User photo selected")
-        }*/
-        
-        dismiss(animated: true, completion: nil)
-    }*/
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let editedUserPhoto = info[UIImagePickerControllerEditedImage] as? UIImage {
             addAvatarButton.image = editedUserPhoto
@@ -207,16 +157,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         print("Open ImagePicker")
         present(imagePickerController, animated: true, completion: nil)
     }
-    
-    /*private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        // Set photoImageView to display the selected image.
-        addAvatarButton.image = selectedImage
-        
-        // Dismiss the picker.
-        dismiss(animated: true, completion: nil)
-    }*/
     
     func dismissKeyboardView() {
         view.endEditing(true)
