@@ -9,43 +9,125 @@
 import UIKit
 import Firebase
 
-class SignInViewController: UIViewController, UITextFieldDelegate {
-    
-    @IBOutlet var usernameTextField: TextFieldsWithPadding!
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var passwordLabel: UILabel!
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
+class SignInViewContoller: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        let paddingViewUsernameTextField = UIView(frame: CGRect(x: 0, y: 0, width: 17, height: self.usernameTextField.frame.height))
-        let paddingViewPasswordTextField = UIView(frame: CGRect(x: 0, y: 0, width: 17, height: self.passwordTextField.frame.height))
+        let tempButton = UIButton()
+        tempButton.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        tempButton.setImage(UIImage(named: "BackArrow.png"), for: .normal)
+        tempButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
         
-        usernameTextField.layer.cornerRadius = 20.0
-        usernameTextField.clipsToBounds = true
-        usernameTextField.leftView = paddingViewUsernameTextField
-        usernameTextField.leftViewMode = UITextFieldViewMode.always
-        usernameLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.8/1.0)
-
-        passwordTextField.layer.cornerRadius = 20.0
-        passwordTextField.leftView = paddingViewPasswordTextField
-        passwordTextField.leftViewMode = UITextFieldViewMode.always
-        passwordLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.8/1.0)
-
-        usernameTextField.delegate = self
-        passwordTextField.delegate = self
+        let barButton = UIBarButtonItem()
+        barButton.customView = tempButton
+        self.navigationItem.leftBarButtonItem = barButton
+        
+        self.navigationItem.title = "Login In"
+        setupViews()
         self.hideKeyboardWhenTapAround()
-        
     }
-
-    @IBAction func signIn(_ sender: UIButton) {
-        if (usernameTextField.text == "") || (passwordTextField.text == "") {
-            print("HELLO!")
+    
+    let inputEmailTitleLabel: UILabel = {
+        let inputTitle = UILabel()
+        inputTitle.font = UIFont.systemFont(ofSize: 12, weight: 0.2)
+        inputTitle.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        inputTitle.text = "EMAIL"
+        inputTitle.translatesAutoresizingMaskIntoConstraints = false
+        return inputTitle
+    }()
+    
+    let emailInputTextField: UITextField = {
+        let emailInput = UITextField()
+        emailInput.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        emailInput.font = UIFont.systemFont(ofSize: 15, weight: 0.1)
+        emailInput.placeholder = "Type your email"
+        emailInput.translatesAutoresizingMaskIntoConstraints = false
+        return emailInput
+    }()
+    
+    let inputPasswordTitleLabel: UILabel = {
+        let inputTitle = UILabel()
+        inputTitle.font = UIFont.systemFont(ofSize: 12, weight: 0.2)
+        inputTitle.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        inputTitle.text = "PASSWORD"
+        inputTitle.translatesAutoresizingMaskIntoConstraints = false
+        return inputTitle
+    }()
+    
+    let passwordInputTextField: UITextField = {
+        let passwordInput = UITextField()
+        passwordInput.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        passwordInput.isSecureTextEntry = true
+        passwordInput.font = UIFont.systemFont(ofSize: 15, weight: 0.1)
+        passwordInput.placeholder = "Type your password"
+        passwordInput.translatesAutoresizingMaskIntoConstraints = false
+        return passwordInput
+    }()
+    
+    let signInButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.setBackgroundImage(UIImage(named: "SignInButton.png"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    func setupViews() {
+        view.backgroundColor = UIColor.white
+        
+        let statusBarView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
+        statusBarView.backgroundColor = UIColor.clear
+        view.addSubview(statusBarView)
+        
+        view.addSubview(inputEmailTitleLabel)
+        inputEmailTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        inputEmailTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        
+        view.addSubview(emailInputTextField)
+        emailInputTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        emailInputTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        emailInputTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        emailInputTextField.topAnchor.constraint(equalTo: inputEmailTitleLabel.bottomAnchor).isActive = true
+        
+        let separator1 = UIView()
+        separator1.backgroundColor = UIColor(red: 215.0/255.0, green: 219.0/255.0, blue: 227.0/255.0, alpha: 1.0/1.0)
+        separator1.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(separator1)
+        separator1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        separator1.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        separator1.topAnchor.constraint(equalTo: emailInputTextField.bottomAnchor).isActive = true
+        separator1.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        
+        view.addSubview(inputPasswordTitleLabel)
+        inputPasswordTitleLabel.topAnchor.constraint(equalTo: separator1.topAnchor, constant: 15).isActive = true
+        inputPasswordTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        
+        view.addSubview(passwordInputTextField)
+        passwordInputTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        passwordInputTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        passwordInputTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        passwordInputTextField.topAnchor.constraint(equalTo: inputPasswordTitleLabel.bottomAnchor).isActive = true
+        
+        let separator2 = UIView()
+        separator2.backgroundColor = UIColor(red: 215.0/255.0, green: 219.0/255.0, blue: 227.0/255.0, alpha: 1.0/1.0)
+        separator2.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(separator2)
+        separator2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        separator2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        separator2.topAnchor.constraint(equalTo: passwordInputTextField.bottomAnchor).isActive = true
+        separator2.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        
+        view.addSubview(signInButton)
+        signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        signInButton.topAnchor.constraint(equalTo: separator2.bottomAnchor, constant: 30).isActive = true
+        signInButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        signInButton.widthAnchor.constraint(equalToConstant: 260).isActive = true
+        signInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+    }
+    
+    func signIn(_ sender: UIButton) {
+        if (emailInputTextField.text == "") || (passwordInputTextField.text == "") {
             let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the filed is blank. Please, fill all fields are required.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
@@ -56,7 +138,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loginIn() {
-        FIRAuth.auth()?.signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!, completion: {
+        FIRAuth.auth()?.signIn(withEmail: emailInputTextField.text!, password: passwordInputTextField.text!, completion: {
             user, error in
             if error != nil {
                 print("Incorrect")
@@ -66,15 +148,20 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                 return
             } else {
                 print("Complete!")
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "nextView") as! UINavigationController
+                //let layout = UICollectionViewFlowLayout()
+                //let activeConversationsListController = ActiveConversationsTableViewController(collectionViewLayout: layout)
+                let mainViewController = MainViewController()
+                let controller = MainNavigationController(rootViewController: mainViewController)
+                controller.modalTransitionStyle = .flipHorizontal
                 self.present(controller, animated: true, completion: nil)
+                //self.present(activeConversationsListController, animated: true, completion: nil)
+                //self.window?.rootViewController?.present(MainNavigationController(rootViewController: activeConversationsListController), animated: true, completion: nil)
             }
         })
     }
-
+    
     func hideKeyboardWhenTapAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignInViewController.dismissKeyboardView))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignInViewContoller.dismissKeyboardView))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -82,8 +169,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     func dismissKeyboardView() {
         view.endEditing(true)
     }
-
-    @IBAction func unwindToLoginScreen(segue: UIStoryboardSegue) {
+    
+    func dismissController() {
+        self.dismiss(animated: true, completion: nil)
+        //self.navigationController?.popViewController(animated: true)
     }
 }
 

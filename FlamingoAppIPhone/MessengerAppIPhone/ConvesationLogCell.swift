@@ -10,10 +10,10 @@ import UIKit
 
 class ConversationLogCell: UICollectionViewCell {
     
+    var conversationLogCollectionViewController: ConversationLogCollectionViewController?
+    
     let textViewMessage: UITextView = {
         let textView = UITextView()
-        //textView.text = "SAMPLE TEXT FOR ROW"
-        //textView.font = UIFont(name: "system", size: 16)
         textView.font = UIFont.systemFont(ofSize: 15)
         textView.textColor = UIColor.white
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,47 +21,33 @@ class ConversationLogCell: UICollectionViewCell {
         return textView
     }()
     
-    let textViewTime: UITextView = {
-        let timeView = UITextView()
-        //timeView.text = "00:00"
-        //textView.font = UIFont(name: "system", size: 16)
-        timeView.font = UIFont.systemFont(ofSize: 12, weight: 0.3)
-        timeView.textColor = UIColor(red: 187.0/255.0, green: 192.0/255.0, blue: 200.0/255.0, alpha: 1.0/1.0)
-        timeView.translatesAutoresizingMaskIntoConstraints = false
-        timeView.backgroundColor = UIColor.clear
-        timeView.scrollsToTop = true
-        return timeView
+    lazy var imageViewMessage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 10.0
+        imageView.clipsToBounds = true
+        //imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openImageFullScreen)))
+        return imageView
     }()
     
-    /*let textViewTime: UITextView = {
-        let timeView = UITextView()
-        timeView.text = "00:00"
-        timeView.font = UIFont.systemFont(ofSize: 13, weight: 1)
-        //timeView.textColor = UIColor(red: 187.0/255.0, green: 192.0/255.0, blue: 200.0/255.0, alpha: 1.0/1.0)
-        timeView.textColor = UIColor.red
-        timeView.translatesAutoresizingMaskIntoConstraints = false
-        timeView.backgroundColor = UIColor.clear
-        return timeView
-    }()*/
+    let timeLabel: UILabel = {
+        let tLabel = UILabel()
+        tLabel.font = UIFont.systemFont(ofSize: 12, weight: 0.2)
+        tLabel.textColor = UIColor(red: 187.0/255.0, green: 192.0/255.0, blue: 200.0/255.0, alpha: 1.0/1.0)
+        tLabel.translatesAutoresizingMaskIntoConstraints = false
+        tLabel.backgroundColor = UIColor.clear
+        return tLabel
+    }()
     
     var wrapperView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10.0
-        //view.layer.roundCorners(corners: [.topLeft, .bottomLeft, .bottomRight], radius: 15)
-        //view.backgroundColor = UIColor(red: 75.0/255.0, green: 93.0/255.0, blue: 149.0/255.0, alpha: 1.0/1.0)
         view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    /*let gradientLayer: CAGradientLayer = {
-        let grLayer = CAGradientLayer()
-        grLayer.frame = CGRect(x: 0, y: 0, width: 200, height: 1000)
-        grLayer.colors = [UIColor(red: 178.0/255.0, green: 194.0/255.0, blue: 210.0/255.0, alpha: 1.0/1.0).cgColor, UIColor(red: 223.0/255.0, green: 233.0/255.0, blue: 242.0/255.0, alpha: 1.0/1.0).cgColor]
-        grLayer.cornerRadius = 15.0
-        return grLayer
-    }()*/
-    
     
     var wrapperWidthAnchor: NSLayoutConstraint?
     var wrapperRightAnchor: NSLayoutConstraint?
@@ -79,33 +65,35 @@ class ConversationLogCell: UICollectionViewCell {
         wrapperWidthAnchor?.isActive = true
         wrapperView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
-       // self.wrapperView.layer.addSublayer(gradientLayer)
-        
         addSubview(textViewMessage)
         textViewMessage.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: 8).isActive = true
         textViewMessage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textViewMessage.rightAnchor.constraint(equalTo: wrapperView.rightAnchor, constant: -10).isActive = true
         textViewMessage.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        textViewMessage.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
         
-        addSubview(textViewTime)
+        addSubview(imageViewMessage)
+        imageViewMessage.leftAnchor.constraint(equalTo: wrapperView.leftAnchor).isActive = true
+        imageViewMessage.topAnchor.constraint(equalTo: wrapperView.topAnchor).isActive = true
+        imageViewMessage.widthAnchor.constraint(equalTo: wrapperView.widthAnchor).isActive = true
+        imageViewMessage.heightAnchor.constraint(equalTo: wrapperView.heightAnchor).isActive = true
         
-        
-        textViewTime.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: 10).isActive = true
-        textViewTime.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: -5).isActive = true
-        textViewTime.rightAnchor.constraint(equalTo: wrapperView.rightAnchor).isActive = true
-        //textViewTime.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        textViewTime.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
-        
-        /*textViewTime.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: 8).isActive = true
-        textViewTime.topAnchor.constraint(equalTo: textViewMessage.bottomAnchor, constant: 8).isActive = true
-        textViewMessage.heightAnchor.constraint(equalToConstant: 20).isActive = true*/
-        
+        addSubview(timeLabel)
+        timeLabel.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: 12).isActive = true
+        timeLabel.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: -7).isActive = true
+        timeLabel.rightAnchor.constraint(equalTo: wrapperView.rightAnchor).isActive = true
+        timeLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) error")
     }
-
+    
+    func openImageFullScreen(tapGesture: UITapGestureRecognizer) {
+        print("Open Photo")
+        if let imageView = tapGesture.view as? UIImageView {
+            self.conversationLogCollectionViewController?.performFullScreenForImageView(imageView: imageView)
+        }
+    }
+    
 }

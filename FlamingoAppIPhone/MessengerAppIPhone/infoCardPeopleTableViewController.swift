@@ -23,7 +23,6 @@ class InfoCardPeopleTableViewController {
     
     init(peopleName: String, profilePhotoImage: String) {
         self.peopleName = peopleName
-        //self.peoplePhotoImage = "EmptyAvatarList"
         self.profilePhotoImage = profilePhotoImage
         self.peopleMessageText = "Some message"
         self.sentTime = "00:00"
@@ -31,11 +30,8 @@ class InfoCardPeopleTableViewController {
     
     init(peopleName: String) {
         self.peopleName = peopleName
-        //self.peoplePhotoImage = "EmptyAvatarList"
         self.profilePhotoImage = ""
         self.peopleMessageText = "Some message"
         self.sentTime = "00:00"
     }
-
-    
 }

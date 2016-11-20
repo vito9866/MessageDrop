@@ -14,9 +14,23 @@ class MessageWrapper: NSObject {
     var text: String?
     var time: String?
     var toUid: String?
+    var imageUrl: String?
+    var imageWidth: NSNumber?
+    var imageHeight: NSNumber?
     
     func conversationPartnerId() -> String? {
         return fromUid == FIRAuth.auth()?.currentUser?.uid ? toUid : fromUid
+    }
+    
+    init(dictionary: [String : Any]) {
+        fromUid = dictionary["fromUid"] as? String
+        text = dictionary["text"] as? String
+        time = dictionary["time"] as? String
+        toUid = dictionary["toUid"] as? String
+        
+        imageUrl = dictionary["imageUrl"] as? String
+        imageWidth = dictionary["imageWidth"] as? NSNumber
+        imageHeight = dictionary["imageHeight"] as? NSNumber
     }
 }
 

@@ -11,56 +11,214 @@ import Firebase
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet var usernameTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var emailLabel: UILabel!
-    @IBOutlet var passwordLabel: UILabel!
-    @IBOutlet var addAvatarButton: UIImageView!
-    
-    let imagePicker = UIImagePickerController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
         
-        let paddingViewUsernameTextField = UIView(frame: CGRect(x: 0, y: 0, width: 17, height: self.usernameTextField.frame.height))
-        let paddingViewEmailTextField = UIView(frame: CGRect(x: 0, y: 0, width: 17, height: self.emailTextField.frame.height))
-        let paddingViewPasswordTextField = UIView(frame: CGRect(x: 0, y: 0, width: 17, height: self.passwordTextField.frame.height))
+        let tempButton = UIButton()
+        tempButton.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        tempButton.setImage(UIImage(named: "BackArrow.png"), for: .normal)
+        tempButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
         
-        usernameLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.8/1.0)
-        emailLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.8/1.0)
-        passwordLabel.textColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.8/1.0)
+        let barButton = UIBarButtonItem()
+        barButton.customView = tempButton
+        self.navigationItem.leftBarButtonItem = barButton
         
-        usernameTextField.layer.cornerRadius = 20.0
-        usernameTextField.clipsToBounds = true
-        usernameTextField.leftView = paddingViewUsernameTextField
-        usernameTextField.leftViewMode = UITextFieldViewMode.always
-        
-        emailTextField.layer.cornerRadius = 20.0
-        emailTextField.clipsToBounds = true
-        emailTextField.leftView = paddingViewEmailTextField
-        emailTextField.leftViewMode = UITextFieldViewMode.always
-        
-        passwordTextField.layer.cornerRadius = 20.0
-        passwordTextField.clipsToBounds = true
-        passwordTextField.leftView = paddingViewPasswordTextField
-        passwordTextField.leftViewMode = UITextFieldViewMode.always
-        
-        addAvatarButton.layer.cornerRadius = 42.0
-        addAvatarButton.clipsToBounds = true
+        navigationItem.title = "Sign Up"
         
         self.hideKeyboardWhenTapAround()
+        self.setupKeyboard()
+        
     }
     
-    @IBAction func signUp(_ sender: UIButton) {
-        if usernameTextField.text == "" || emailTextField.text == "" || passwordTextField.text == "" {
-            let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the filed is blank. Please, fill all fields are required.", preferredStyle: .alert)
+    var userPhotoSelectedIndicator = false
+    
+    let addAvatarButton: UIImageView = {
+        let imageButton = UIImageView()
+        imageButton.layer.cornerRadius = 42.0
+        imageButton.clipsToBounds = true
+        imageButton.image = UIImage(named: "EmptyUserPhoto.png")
+        imageButton.translatesAutoresizingMaskIntoConstraints = false
+        imageButton.isUserInteractionEnabled = true
+        return imageButton
+    }()
+    
+    let inputUsernameTitleLabel: UILabel = {
+        let inputTitle = UILabel()
+        inputTitle.font = UIFont.systemFont(ofSize: 12, weight: 0.2)
+        inputTitle.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        inputTitle.text = "USERNAME"
+        inputTitle.translatesAutoresizingMaskIntoConstraints = false
+        return inputTitle
+    }()
+    
+    let usernameInputTextField: UITextField = {
+        let usernameInput = UITextField()
+        usernameInput.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        usernameInput.font = UIFont.systemFont(ofSize: 15, weight: 0.1)
+        usernameInput.placeholder = "Type your username"
+        usernameInput.translatesAutoresizingMaskIntoConstraints = false
+        return usernameInput
+    }()
+    
+    let inputEmailTitleLabel: UILabel = {
+        let inputTitle = UILabel()
+        inputTitle.font = UIFont.systemFont(ofSize: 12, weight: 0.2)
+        inputTitle.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        inputTitle.text = "EMAIL"
+        inputTitle.translatesAutoresizingMaskIntoConstraints = false
+        return inputTitle
+    }()
+    
+    let emailInputTextField: UITextField = {
+        let emailInput = UITextField()
+        emailInput.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        emailInput.font = UIFont.systemFont(ofSize: 15, weight: 0.1)
+        emailInput.placeholder = "Type your email"
+        emailInput.translatesAutoresizingMaskIntoConstraints = false
+        return emailInput
+    }()
+    
+    let inputPasswordTitleLabel: UILabel = {
+        let inputTitle = UILabel()
+        inputTitle.font = UIFont.systemFont(ofSize: 12, weight: 0.2)
+        inputTitle.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        inputTitle.text = "PASSWORD"
+        inputTitle.translatesAutoresizingMaskIntoConstraints = false
+        return inputTitle
+    }()
+    
+    let passwordInputTextField: UITextField = {
+        let passwordInput = UITextField()
+        passwordInput.textColor = UIColor(red: 66.0/255.0, green: 76.0/255.0, blue: 92.0/255.0, alpha: 1.0/1.0)
+        passwordInput.isSecureTextEntry = true
+        passwordInput.font = UIFont.systemFont(ofSize: 15, weight: 0.1)
+        passwordInput.placeholder = "Type your password"
+        passwordInput.translatesAutoresizingMaskIntoConstraints = false
+        return passwordInput
+    }()
+    
+    let signUpButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.setBackgroundImage(UIImage(named: "SignUpButton.png"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let editedUserPhoto = info[UIImagePickerControllerEditedImage] as? UIImage {
+            addAvatarButton.image = editedUserPhoto
+            print("User edited photo selected")
+        } else if let originalUserPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            addAvatarButton.image = originalUserPhoto
+            print("User original photo selected")
+        }
+        userPhotoSelectedIndicator = true
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func selectUserPhotoFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        imagePickerController.sourceType = .photoLibrary
+        print("Open ImagePicker")
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    var photoTopAnchor: NSLayoutConstraint?
+    
+    func setupViews() {
+        view.backgroundColor = UIColor.white
+        
+        view.addSubview(addAvatarButton)
+        addAvatarButton.widthAnchor.constraint(equalToConstant: 84).isActive = true
+        addAvatarButton.heightAnchor.constraint(equalToConstant: 84).isActive = true
+        photoTopAnchor = addAvatarButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30);
+        photoTopAnchor?.isActive = true
+        addAvatarButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addSubview(inputUsernameTitleLabel)
+        inputUsernameTitleLabel.topAnchor.constraint(equalTo: addAvatarButton.bottomAnchor, constant: 30).isActive = true
+        inputUsernameTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectUserPhotoFromPhotoLibrary))
+        addAvatarButton.addGestureRecognizer(tap)
+        
+        view.addSubview(usernameInputTextField)
+        usernameInputTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        usernameInputTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        usernameInputTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        usernameInputTextField.topAnchor.constraint(equalTo: inputUsernameTitleLabel.bottomAnchor).isActive = true
+        
+        let separator1 = UIView()
+        separator1.backgroundColor = UIColor(red: 215.0/255.0, green: 219.0/255.0, blue: 227.0/255.0, alpha: 1.0/1.0)
+        separator1.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(separator1)
+        separator1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        separator1.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        separator1.topAnchor.constraint(equalTo: usernameInputTextField.bottomAnchor).isActive = true
+        separator1.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        
+        view.addSubview(inputEmailTitleLabel)
+        inputEmailTitleLabel.topAnchor.constraint(equalTo: separator1.bottomAnchor, constant: 15).isActive = true
+        inputEmailTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        
+        view.addSubview(emailInputTextField)
+        emailInputTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        emailInputTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        emailInputTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        emailInputTextField.topAnchor.constraint(equalTo: inputEmailTitleLabel.bottomAnchor).isActive = true
+        
+        let separator2 = UIView()
+        separator2.backgroundColor = UIColor(red: 215.0/255.0, green: 219.0/255.0, blue: 227.0/255.0, alpha: 1.0/1.0)
+        separator2.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(separator2)
+        separator2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        separator2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        separator2.topAnchor.constraint(equalTo: emailInputTextField.bottomAnchor).isActive = true
+        separator2.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        
+        view.addSubview(inputPasswordTitleLabel)
+        inputPasswordTitleLabel.topAnchor.constraint(equalTo: separator2.topAnchor, constant: 15).isActive = true
+        inputPasswordTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        
+        view.addSubview(passwordInputTextField)
+        passwordInputTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        passwordInputTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        passwordInputTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        passwordInputTextField.topAnchor.constraint(equalTo: inputPasswordTitleLabel.bottomAnchor).isActive = true
+        
+        let separator3 = UIView()
+        separator3.backgroundColor = UIColor(red: 215.0/255.0, green: 219.0/255.0, blue: 227.0/255.0, alpha: 1.0/1.0)
+        separator3.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(separator3)
+        separator3.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        separator3.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        separator3.topAnchor.constraint(equalTo: passwordInputTextField.bottomAnchor).isActive = true
+        separator3.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        
+        view.addSubview(signUpButton)
+        signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        signUpButton.topAnchor.constraint(equalTo: separator3.bottomAnchor, constant: 30).isActive = true
+        signUpButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        signUpButton.widthAnchor.constraint(equalToConstant: 260).isActive = true
+        signUpButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+    }
+    
+    func signUp(_ sender: UIButton) {
+        if usernameInputTextField.text == "" || emailInputTextField.text == "" || passwordInputTextField.text == "" || !userPhotoSelectedIndicator {
+            let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the filed is blank or you didn't select you photo. Please, check you data and try again.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
             return
         } else {
-            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text! , completion: {
+            FIRAuth.auth()?.createUser(withEmail: emailInputTextField.text!, password: passwordInputTextField.text! , completion: {
                 user, error in
                 if error != nil {
                     print("Form if not valid")
@@ -85,7 +243,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                 return
                             }
                             if let profilePhotoUrl: String = metadata?.downloadURL()?.absoluteString {
-                                let dataValues: Dictionary<String, String> = ["username" : self.usernameTextField.text!, "email" : self.emailTextField.text!, "profileImageUrl" : profilePhotoUrl]
+                                let dataValues: Dictionary<String, String> = ["username" : self.usernameInputTextField.text!, "email" : self.emailInputTextField.text!, "profileImageUrl" : profilePhotoUrl]
                                 self.registerNewUserIntoDatabase(uid: uid, dataValues: dataValues)
                             }
                         })
@@ -96,7 +254,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func registerNewUserIntoDatabase(uid: String, dataValues: [String : Any]) {
-        
         let ref = FIRDatabase.database().reference()
         let userReference = ref.child("users").child(uid)
         userReference.updateChildValues(dataValues, withCompletionBlock: {
@@ -111,7 +268,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func loginIn() {
-        FIRAuth.auth()?.signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion: {
+        FIRAuth.auth()?.signIn(withEmail: emailInputTextField.text!, password: passwordInputTextField.text!, completion: {
             user, error in
             if error != nil {
                 print("Incorrect")
@@ -121,48 +278,56 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 return
             } else {
                 print("Complete!")
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "nextView") as! UINavigationController
+                //let layout = UICollectionViewFlowLayout()
+                //let activeConversationsListController = ActiveConversationsTableViewController(collectionViewLayout: layout)
+                let mainViewController = MainViewController()
+                let controller = MainNavigationController(rootViewController: mainViewController)
+                controller.modalTransitionStyle = .flipHorizontal
                 self.present(controller, animated: true, completion: nil)
             }
         })
     }
     
-    func hideKeyboardWhenTapAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+    func setupKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let editedUserPhoto = info[UIImagePickerControllerEditedImage] as? UIImage {
-            addAvatarButton.image = editedUserPhoto
-            print("User edited photo selected")
-        } else if let originalUserPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            addAvatarButton.image = originalUserPhoto
-            print("User original photo selected")
+    func showKeyboard(notification: NSNotification) {
+        let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        photoTopAnchor?.constant = -90
+        UIView.animate(withDuration: keyboardDuration) {
+            self.view.layoutIfNeeded()
         }
-        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func selectUserPhotoFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        imagePickerController.sourceType = .photoLibrary
-        print("Open ImagePicker")
-        present(imagePickerController, animated: true, completion: nil)
+    func hideKeyboard(notification: NSNotification) {
+        photoTopAnchor?.constant = 30
+        let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        UIView.animate(withDuration: keyboardDuration) {
+            self.view.layoutIfNeeded()
+        }
     }
+    
+    func hideKeyboardWhenTapAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboardView))
+        tap.cancelsTouchesInView = false
+        self.view?.addGestureRecognizer(tap)
+    }
+    
+    /*func hideKeyboardWhenTapAround() {
+     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignInViewContoller.dismissKeyboardView))
+     tap.cancelsTouchesInView = false
+     view.addGestureRecognizer(tap)
+     }*/
     
     func dismissKeyboardView() {
         view.endEditing(true)
     }
     
-    @IBAction func unwindToLoginScreen(segue: UIStoryboardSegue){
+    func dismissController() {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
